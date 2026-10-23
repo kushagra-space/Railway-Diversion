@@ -1,0 +1,4 @@
+train_number,train_name,source,destination,original_route,diverted_route
+12951,Mumbai Rajdhani,Mumbai Central,New Delhi,Mumbai Central|Surat|Vadodara|Ratlam|Bhopal|Jhansi|Agra|New Delhi,Mumbai Central|Surat|Vadodara|Kota|Sawai Madhopur|Agra|New Delhi
+12952,Mumbai Rajdhani,New Delhi,Mumbai Central,New Delhi|Agra|Jhansi|Bhopal|Ratlam|Vadodara|Surat|Mumbai Central,New Delhi|Agra|Sawai Madhopur|Kota|Vadodara|Surat|Mumbai Central
+12002,Bhopal Shatabdi,New Delhi,Rani Kamlapati,New Delhi|Agra|Morena|Gwalior|Jhansi|Lalitpur|Bina|Rani Kamlapati,New Delhi|Agra|Gwalior|Jhansi|Bina|Rani Kamlapati

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Railway Diversion Checker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🚆 Railway Diversion Checker</h1>
+
+        <p>
+            Check whether your journey is affected by a train diversion.
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <form action="/check" method="get">
+
+            <label>Train Number</label>
+
+            <select name="train_number"
+                    id="train_number"
+                    required>
+
+                <option value="">Select Train</option>
+
+                {% for train in trains %}
+
+                <option
+                    value="{{ train.train_number }}"
+                    data-route="{{ train.original_route }}"
+                >
+                    {{ train.train_number }} - {{ train.train_name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Boarding Station</label>
+
+            <select name="boarding"
+                    id="boarding"
+                    required>
+
+                <option value="">
+                    Select Boarding Station
+                </option>
+
+            </select>
+
+
+            <label>Destination Station</label>
+
+            <select name="destination"
+                    id="destination"
+                    required>
+
+                <option value="">
+                    Select Destination Station
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Check My Journey
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="disclaimer">
+
+        ⚠️ This project uses sample diversion data
+        for demonstration. It is not connected to
+        live Indian Railways data.
+
+    </div>
+
+
+    <p class="footer">
+        Railway Diversion Impact Checker
+    </p>
+
+</div>
+
+
+<script>
+
+const trainSelect =
+    document.getElementById("train_number");
+
+const boardingSelect =
+    document.getElementById("boarding");
+
+const destinationSelect =
+    document.getElementById("destination");
+
+let stations = [];
+
+
+trainSelect.addEventListener("change", function() {
+
+    boardingSelect.innerHTML =
+        '<option value="">Select Boarding Station</option>';
+
+    destinationSelect.innerHTML =
+        '<option value="">Select Destination Station</option>';
+
+    const selectedOption =
+        trainSelect.options[
+            trainSelect.selectedIndex
+        ];
+
+    const route =
+        selectedOption.dataset.route;
+
+    if (!route) {
+
+        stations = [];
+
+        return;
+    }
+
+    stations = route.split("|");
+
+
+    stations.forEach(function(station, index) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = station;
+
+        option.textContent = station;
+
+        option.dataset.index = index;
+
+        boardingSelect.appendChild(option);
+
+    });
+
+});
+
+
+boardingSelect.addEventListener("change", function() {
+
+    destinationSelect.innerHTML =
+        '<option value="">Select Destination Station</option>';
+
+    const boardingIndex =
+        boardingSelect.selectedIndex - 1;
+
+    if (boardingIndex < 0) {
+
+        return;
+    }
+
+
+    for (
+        let i = boardingIndex + 1;
+        i < stations.length;
+        i++
+    ) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = stations[i];
+
+        option.textContent = stations[i];
+
+        destinationSelect.appendChild(option);
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

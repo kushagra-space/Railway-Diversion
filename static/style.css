@@ -1,0 +1,308 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+
+.header p {
+    color: #666;
+}
+
+
+.card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background: white;
+}
+
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background: #444;
+}
+
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #888;
+    font-size: 14px;
+}
+
+
+/* Journey */
+
+.journey {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f4f6f8;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+
+.journey span {
+    font-size: 24px;
+}
+
+
+/* Status */
+
+.status-card {
+    text-align: center;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 12px;
+    background: #f4f6f8;
+}
+
+
+.status-card h2 {
+    margin: 10px 0;
+}
+
+
+.status-card p {
+    color: #555;
+}
+
+
+.status-icon {
+    font-size: 42px;
+}
+
+
+.reason {
+    margin-top: 20px;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+}
+
+
+/* Severity */
+
+.severity {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 17px;
+}
+
+
+.severity-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: #f4f6f8;
+    font-weight: bold;
+}
+
+
+/* Impact */
+
+.impact {
+    margin-top: 25px;
+    padding: 20px;
+    text-align: center;
+    background: #f4f6f8;
+    border-radius: 10px;
+}
+
+
+.score {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+/* Diversion Summary */
+
+.route-changes {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+.change-box {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f4f6f8;
+}
+
+
+.change-box h3 {
+    margin-top: 0;
+}
+
+
+.change-box ul {
+    padding-left: 20px;
+}
+
+
+.change-box li {
+    margin: 8px 0;
+}
+
+
+/* Route Timeline */
+
+.timeline {
+    margin-top: 20px;
+}
+
+
+.timeline h3 {
+    margin-bottom: 15px;
+}
+
+
+.diverted-title {
+    margin-top: 30px;
+}
+
+
+.timeline-station {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f4f6f8;
+    border-radius: 8px;
+}
+
+
+.timeline-dot {
+    font-weight: bold;
+}
+
+
+.timeline-station small {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+
+.skipped-station {
+    text-decoration: line-through;
+}
+
+
+.added-station {
+    font-weight: bold;
+}
+
+
+/* Disclaimer */
+
+.disclaimer {
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    background: white;
+    border-radius: 8px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+        margin: 30px auto;
+    }
+
+
+    .card {
+        padding: 20px;
+    }
+
+
+    .header h1 {
+        font-size: 26px;
+    }
+
+
+    .route-changes {
+        flex-direction: column;
+    }
+
+
+    .journey {
+        font-size: 16px;
+    }
+
+
+    .comparison {
+        flex-direction: column;
+    }
+
+}

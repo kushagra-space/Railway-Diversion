@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Journey Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>🚆 Journey Result</h1>
+
+        <p>
+            {{ train_name }} • Train {{ train_number }}
+        </p>
+
+    </div>
+
+
+
+    <!-- Journey Card -->
+
+    <div class="card">
+
+        <h2>Your Journey</h2>
+
+
+        <div class="journey">
+
+            <strong>
+                {{ boarding }}
+            </strong>
+
+            <span>→</span>
+
+            <strong>
+                {{ destination }}
+            </strong>
+
+        </div>
+
+
+
+        <!-- Journey Status -->
+
+        <div class="status-card">
+
+            {% if not "affected" in status
+                  and "available" not in status
+                  and "normal route" in status %}
+
+                <div class="status-icon">
+                    ✅
+                </div>
+
+                <h2>
+                    No Diversion
+                </h2>
+
+                <p>
+                    {{ status }}
+                </p>
+
+
+            {% elif "affected" in status %}
+
+                <div class="status-icon">
+                    ⚠️
+                </div>
+
+                <h2>
+                    Journey Affected
+                </h2>
+
+                <p>
+                    {{ status }}
+                </p>
+
+
+            {% elif "available" in status %}
+
+                <div class="status-icon">
+                    ✅
+                </div>
+
+                <h2>
+                    Journey Not Affected
+                </h2>
+
+                <p>
+                    {{ status }}
+                </p>
+
+
+            {% else %}
+
+                <div class="status-icon">
+                    ⚠️
+                </div>
+
+                <h2>
+                    Check Required
+                </h2>
+
+                <p>
+                    {{ status }}
+                </p>
+
+            {% endif %}
+
+
+            <p class="reason">
+
+                <strong>Reason:</strong>
+
+                {{ impact_reason }}
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Severity -->
+
+        <div class="severity">
+
+            <strong>
+                Diversion Severity:
+            </strong>
+
+            <span class="severity-badge">
+                {{ severity }}
+            </span>
+
+        </div>
+
+
+
+        <!-- Impact Score -->
+
+        <div class="impact">
+
+            <h3>
+                Passenger Impact Score
+            </h3>
+
+
+            <div class="score">
+
+                {{ impact_score }}/100
+
+            </div>
+
+
+            <p>
+
+                Impact Level:
+                <strong>
+                    {{ impact_level }}
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                Higher score means greater
+                impact on your journey.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Estimated Delay -->
+
+        <div class="impact">
+
+            <h3>
+                ⏱️ Estimated Additional Delay
+            </h3>
+
+
+            <div class="score">
+
+                {{ estimated_delay }} minutes
+
+            </div>
+
+
+            <p>
+
+                Estimated additional travel time
+                due to the diversion.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Diversion Summary -->
+
+    <div class="card">
+
+        <h2>
+            🔄 Diversion Summary
+        </h2>
+
+
+        <p>
+            Changes detected between the
+            original and diverted route.
+        </p>
+
+
+        <div class="route-changes">
+
+
+            <!-- Skipped Stations -->
+
+            <div class="change-box skipped">
+
+                <h3>
+                    🔴 Skipped Stations
+                </h3>
+
+
+                {% if skipped %}
+
+                    <ul>
+
+                        {% for station in skipped %}
+
+                            <li>
+                                {{ station }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <p>
+                        No stations skipped.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- Added Stations -->
+
+            <div class="change-box added">
+
+                <h3>
+                    🟢 Added Stations
+                </h3>
+
+
+                {% if added %}
+
+                    <ul>
+
+                        {% for station in added %}
+
+                            <li>
+                                {{ station }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <p>
+                        No additional stations.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Route Comparison -->
+
+    <div class="card">
+
+        <h2>
+            🛤️ Route Comparison
+        </h2>
+
+
+        <div class="timeline">
+
+
+            <!-- Original Route -->
+
+            <h3>
+                Original Route
+            </h3>
+
+
+            {% for station in original_route %}
+
+
+                {% if station in skipped %}
+
+                    <div class="timeline-station skipped-station">
+
+                        <span class="timeline-dot">
+                            ✕
+                        </span>
+
+                        <span>
+                            {{ station }}
+                        </span>
+
+                        <small>
+                            Skipped
+                        </small>
+
+                    </div>
+
+
+                {% else %}
+
+                    <div class="timeline-station">
+
+                        <span class="timeline-dot">
+                            ●
+                        </span>
+
+                        <span>
+                            {{ station }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+
+            {% endfor %}
+
+
+
+            <!-- Diverted Route -->
+
+            <h3 class="diverted-title">
+
+                Diverted Route
+
+            </h3>
+
+
+            {% for station in diverted_route %}
+
+
+                {% if station in added %}
+
+                    <div class="timeline-station added-station">
+
+                        <span class="timeline-dot">
+                            +
+                        </span>
+
+                        <span>
+                            {{ station }}
+                        </span>
+
+                        <small>
+                            Added
+                        </small>
+
+                    </div>
+
+
+                {% else %}
+
+                    <div class="timeline-station">
+
+                        <span class="timeline-dot">
+                            ●
+                        </span>
+
+                        <span>
+                            {{ station }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Back Button -->
+
+    <a href="/">
+
+        <button>
+            Check Another Journey
+        </button>
+
+    </a>
+
+
+</div>
+
+</body>
+
+</html>
