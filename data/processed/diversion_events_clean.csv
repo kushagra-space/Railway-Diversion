@@ -1,0 +1,4 @@
+train_number,original_route,diverted_route,is_diverted,skipped_count,added_count,batch_id
+12951,Mumbai Central|Surat|Vadodara|Ratlam|Bhopal|Jhansi|Agra|New Delhi,Mumbai Central|Surat|Vadodara|Kota|Sawai Madhopur|Agra|New Delhi,True,3,2,BATCH_20261025_122722_fedf70
+12952,New Delhi|Agra|Jhansi|Bhopal|Ratlam|Vadodara|Surat|Mumbai Central,New Delhi|Agra|Sawai Madhopur|Kota|Vadodara|Surat|Mumbai Central,True,3,2,BATCH_20261025_122722_fedf70
+12002,New Delhi|Agra|Morena|Gwalior|Jhansi|Lalitpur|Bina|Rani Kamlapati,New Delhi|Agra|Gwalior|Jhansi|Bina|Rani Kamlapati,True,2,0,BATCH_20261025_122722_fedf70
